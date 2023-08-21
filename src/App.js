@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Increment, Dicrement, Multiply, Division } from "./Redux/Action";
 
 function App() {
+  const myState = useSelector((state) => state.Reducer);
+
+  // console.log(myState);
+  const State = useSelector((state) => state.MyReducer);
+  console.log(State);
+
+  const dispatch = useDispatch();
+  // console.log(dispatch);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <input type="number" value={State} />
+        <br />
+
+        <input type="number" value={myState} />
+        <br />
+        <button onClick={() => dispatch(Increment())}>Plus</button>
+        <button onClick={() => dispatch(Dicrement())}>Minus</button>
+        <br />
+        <button onClick={() => dispatch(Multiply())}>multiply</button>
+        <button onClick={() => dispatch(Division())}>division</button>
+      </div>
     </div>
   );
 }
